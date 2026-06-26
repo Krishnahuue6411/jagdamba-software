@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jagdamba Electrical M-3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <h1>JAGDAMBA</h1>
+          <span>ELECTRICAL M-3</span>
+        </div>
+      </div>
+
+      <nav id="navMenu">
+        <div class="nav-section">
+          <h3>MASTER</h3>
+          <button class="nav-btn active" data-module="RM">RAW MATERIAL MASTER</button>
+          <button class="nav-btn" data-module="TRANSPORT_MASTER">TRANSPORTER MASTER</button>
+          <button class="nav-btn" data-module="BOM">BILL OF MATERIAL</button>
+          <button class="nav-btn" data-module="PO_MASTER">PO MASTER</button>
+          <button class="nav-btn" data-module="PO_NO">PO NO</button>
+          <button class="nav-btn" data-module="UNIT_MASTER">UNIT MASTER</button>
+        </div>
+
+        <div class="nav-section">
+          <h3>TRANSACTION</h3>
+          <button class="nav-btn" data-module="INWARD">INWARD RAW MATERIAL</button>
+          <button class="nav-btn" data-module="TAX_INVOICE">TAX INVOICE</button>
+          <button class="nav-btn" data-module="NFP">NFP</button>
+          <button class="nav-btn" data-module="WIP">WIP</button>
+          <button class="nav-btn" data-module="RM_STOCK">STOCK UPDATE</button>
+        </div>
+
+        <div class="nav-section">
+          <h3>REPORT</h3>
+          <button class="nav-btn" data-module="INWARD_REPORT">INWARD REPORT</button>
+          <button class="nav-btn" data-module="NFP_REPORT">DISPATCH REPORT</button>
+          <button class="nav-btn" data-module="TAX_INVOICE_REPORT">GST REPORT</button>
+          <button class="nav-btn" data-module="STOCK">RAW MATERIAL STOCK</button>
+        </div>
+
+        <button class="nav-btn close-btn" id="closeBtn">✕ CLOSE</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="status-dot"></span> 
+        <span id="dbStatus">Connected</span>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+      <!-- Top Bar -->
+      <header id="topBar">
+        <div>
+          <span class="breadcrumb" id="breadcrumb">MASTER</span>
+          <h2 id="pageTitle">RAW MATERIAL MASTER</h2>
+        </div>
+        <div class="top-actions">
+          <input type="text" id="globalSearch" placeholder="Search..." autocomplete="off">
+          <button class="btn-icon" id="refreshBtn" title="Refresh">⟳</button>
+          <button class="btn-icon" id="printBtn" title="Print">🖨</button>
+        </div>
+      </header>
+
+      <!-- Stats -->
+      <div id="statsBar">
+        <div class="stat-item">
+          <span>Total Records</span>
+          <strong id="totalRecords">0</strong>
+        </div>
+        <div class="stat-item">
+          <span>Showing</span>
+          <strong id="showingRecords">0</strong>
+        </div>
+        <div class="stat-item">
+          <span>Amount</span>
+          <strong id="totalAmount">₹0</strong>
+        </div>
+      </div>
+
+      <!-- Stock Screen -->
+      <div id="stockScreen" style="display:none;">
+        <div class="stock-header">
+          <h2>RAW MATERIAL STOCK</h2>
+          <div class="stock-controls">
+            <label>Select Code</label>
+            <select id="stockCode"><option value="">All Codes</option></select>
+            <button class="btn-primary" id="stockRegisterBtn">Stock Register</button>
+            <button class="btn-secondary" id="stockExitBtn">EXIT</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <section id="formSection">
+        <div class="form-header">
+          <h3 id="formTitle">Entry</h3>
+          <span id="formHint">Select a row to edit or press New</span>
+        </div>
+        <form id="entryForm" class="entry-form"></form>
+        <div class="form-actions" id="formActions"></div>
+      </section>
+
+      <!-- Report Filter -->
+      <div id="reportFilter" style="display:none;">
+        <label>FROM DATE <input type="date" id="fromDate"></label>
+        <label>TO DATE <input type="date" id="toDate"></label>
+        <button class="btn-primary" id="applyFilterBtn">Apply</button>
+        <button class="btn-secondary" id="exportBtn">Export CSV</button>
+      </div>
+
+      <!-- Table -->
+      <section id="tableSection">
+        <div class="table-header">
+          <h3 id="tableTitle">Records</h3>
+          <span id="rowCount">0 rows</span>
+        </div>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="paramModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Enter Parameter Values</h3>
+      <div class="modal-body">
+        <div class="param-field">
+          <label>FROM DATE</label>
+          <input type="date" id="paramFromDate">
+        </div>
+        <div class="param-field">
+          <label>TO DATE</label>
+          <input type="date" id="paramToDate">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="paramOkBtn">OK</button>
+        <button class="btn-secondary" id="paramCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
